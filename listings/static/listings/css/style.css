@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.navbar {
+    padding: 1rem 1.5rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 10px;
+    color: #000000;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #0056b3;
+}
+
+.container {
+    padding: 2rem 1rem;
+}
+
+footer {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 0.9rem;
+    }
+}
+
+
+.section {
+    padding-top: 3rem;
+    padding-bottom: 3rem; /* Add spacing below each section */
+}
+
+
+.carousel img {
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 8px;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card-text, .card-title {
+    text-align: left;
+}
+
+.rounded-circle {
+    border: 5px solid #f8f9fa;
+}
+
+.container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.container p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+}
+
+.btn-outline-secondary {
+    color: #555;
+    border-color: #555;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #555;
+    color: white;
+    border-color: #555;
+}

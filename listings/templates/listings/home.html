@@ -1,0 +1,70 @@
+<!-- home.html -->
+{% extends 'listings/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="section">
+        <div class="row align-items-center mb-5">
+            <div class="col-md-6">
+                {% load static %}
+                <img src="{% static 'listings/images/realtor-intro.jpg' %}" alt="Realtor Introduction" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6">
+                <h1>Tyson Chan</h2>
+                <p>Hello, I’m Tyson Chan, and I would be honored to assist you with any of your real estate needs. My mission as your Realtor is to provide exceptional service and a smooth experience throughout your transaction. I believe in treating my clients with the same care and respect that I would expect for myself.</p>
+                <p>I am committed to keeping you fully informed every step of the way, ensuring that no detail is overlooked. Whether you're buying or selling, I am here to guide you through the process—no matter who the property is listed with.</p>
+                <p>I specialize in the Collin, Fannin, and Grayson County areas, and I’d love the opportunity to work with you. Feel free to reach out to me via email at <a href="mailto:tyson8318@gmail.com">tyson8318@gmail.com</a> or call me directly at <a href="tel:4692308028">469-230-8028</a>.</p>
+                <p>I look forward to making your real estate experience a positive and rewarding one! I am licensed in Texas, Dallas, and Dallas metro cities. Please feel free to search property; if you see any you like, please do not hesitate to contact me.</p>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="section">
+        <h1>Search Local Properties</h1>
+
+        <form method="GET" action="{% url 'search' %}" class="d-flex mb-4">
+            <input type="text" name="q" class="form-control me-2" placeholder="Search listings...">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+    
+
+    <div class="row">
+        {% for listing in listings %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <!-- Carousel for each listing -->
+                <div id="carousel{{ listing.id }}" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for image in listing.images.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ listing.title }}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ listing.id }}" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel{{ listing.id }}" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ listing.title }}</h5>
+                    <p class="card-text">{{ listing.description|truncatechars:100 }}</p>
+                    <p class="card-text">Price: ${{ listing.price }}</p>
+                    <a href="{% url 'detail' listing.id %}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- More Listings Button -->
+    <div class="text-center mt-4">
+        <a href="{% url 'investment' %}" class="btn btn-outline-secondary">More Listings</a>
+    </div>
+</div>
+{% endblock %}

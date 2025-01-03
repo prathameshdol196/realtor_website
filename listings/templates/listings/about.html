@@ -1,0 +1,22 @@
+<!-- about.html -->
+{% extends 'listings/base.html' %}
+{% load static %}
+
+{% block title %}About Me - Tyson Chan{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-4">
+
+    <img src="{% static 'listings/images/realtor-intro.jpg' %}" class="rounded-circle img-fluid mb-3" alt="Owner Image" style="width: 200px; height: 200px; object-fit: cover;">
+
+    <h1 class="text-center my-4">About Me</h1>
+
+    <p class="mt-3">Hi, I’m Tyson Chan. I’ve been in the real estate game for a while now, starting out with fix-and-flip projects before getting my realtor license. Why? Because it made sense to have the tools I needed to find the best investment properties and opportunities for myself. And let’s be honest—my very first client was me!</p>
+    
+    <p class="mt-3">Over time, I’ve expanded my services and worked with a variety of clients and investors. My hands-on experience with home repairs—whether it’s drywall, painting, foundation, flooring, electrical, plumbing, or HVAC—gives me a unique edge. I’m not just helping you buy or sell a property; I’m making sure you’re aware of any hidden issues that might not be obvious at first glance. It’s all about making sure you’re making a smart, informed decision.</p>
+
+    <p class="mt-3">When it comes to working with investors, I don’t just look at the surface. I dive deep, offering detailed market analysis, rental budgeting, and advice on how long to hold or when to sell. I’ll also help you leverage your buying power and explore financing options.</p>
+
+    <p class="mt-3">For those looking to build a solid investment portfolio, I can even help tailor one to suit your goals and needs.</p>
+</div>
+{% endblock %}
