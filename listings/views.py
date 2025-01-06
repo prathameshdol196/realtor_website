@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from .models import Listing
 from django.core.paginator import Paginator
+from django.conf import settings
 
 
 #  Login ad Logout
@@ -30,6 +31,9 @@ def home(request):
     paginator = Paginator(listings, 6)  # Show 6 listings per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    print(settings.EMAIL_HOST_USER)
+    print(settings.EMAIL_HOST_PASSWORD)
+    print(settings.DEFAULT_CONTACT_EMAIL)
     return render(request, 'listings/home.html', {'page_obj': page_obj, 'listings': listings, 'query': query})
 
 
@@ -56,15 +60,24 @@ def contact(request):
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
+
+            full_message = f"Email : \n {email} \n\n Message : \n {message}"
             try:
                 send_mail(
                     subject=f"New message from {name}",
-                    message=message,
-                    from_email=email,
-                    recipient_list=[settings.DEFAULT_CONTACT_EMAILl],  # Replace with your email
+                    message=full_message,
+                    from_email=settings.EMAIL_HOST_USER,
+                    recipient_list=[settings.DEFAULT_CONTACT_EMAIL],  # Replace with your email
                 )
                 messages.success(request, "Your message was sent successfully!")
+                print(f"name = {name}")
+                print(f"email = {email}")
+                print(f"message = {message}")
+                print(f"from email = {settings.EMAIL_HOST_USER}")
+                print(f"reciepent = {settings.DEFAULT_CONTACT_EMAIL}")
+
                 return redirect('contact')
+            
 
             except BadHeaderError:
                 messages.error(request, "Invalis Header found.")

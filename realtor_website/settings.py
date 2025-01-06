@@ -128,6 +128,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Email configuration in settings.py
 import os
 
+# Load .env file manually
+env_file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
+
+if os.path.exists(env_file_path):
+    with open(env_file_path) as f:
+        for line in f:
+            # Ignore empty lines and comments
+            if line.strip() and not line.startswith('#'):
+                key, value = line.strip().split('=', 1)
+                os.environ[key] = value
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -135,6 +146,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  # Replace with your Gmail address
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')  # Replace with your app-specific password
 DEFAULT_CONTACT_EMAIL = os.getenv('DEFAULT_CONTACT_EMAIL')
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
