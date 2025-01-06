@@ -5,15 +5,6 @@ from django.core.paginator import Paginator
 from django.conf import settings
 
 
-#  Login ad Logout
-from django.contrib.auth import login, logout, authenticate
-from django.shortcuts import redirect
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.decorators import login_required
-
-#  Registration
-from django.contrib.auth.forms import UserCreationForm
-
 
 def home(request):
     query = request.GET.get('q', '')
